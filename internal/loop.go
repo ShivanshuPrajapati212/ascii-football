@@ -1,12 +1,10 @@
 package internal
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"time"
 
-	"github.com/ShivanshuPrajapati212/ascii-football/ascii"
 	"golang.org/x/term"
 )
 
@@ -22,8 +20,9 @@ func MainLoop() {
 	}
 	for {
 		startTime := time.Now()
-		fmt.Print("\033[2J\033[0;0H")
-		fmt.Print(ascii.FootballFieldASCII)
+
+		printField()
+
 		time.Sleep(time.Duration((1.0/float32(FPS))*float32(time.Second)) - time.Since(startTime))
 
 	}

@@ -1,7 +1,7 @@
 package main
 
-import "github.com/ShivanshuPrajapati212/ascii-football-server/pkg/database"
+import "github.com/ShivanshuPrajapati212/ascii-football-server/internal/handlers"
 
 func main() {
-	database.ConnectToMongoDB("mongodb://localhost:27017")
+	handlers.StartServer()
 }

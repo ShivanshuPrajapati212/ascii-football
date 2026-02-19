@@ -14,6 +14,7 @@ func StartServer() {
 	})
 
 	http.HandleFunc("/helloHell", websockets.HelloHellConnection)
+	http.HandleFunc("/ws", websockets.GameWSHandler)
 
 	err := http.ListenAndServe(":42069", nil)
 	if err != nil {

@@ -34,7 +34,7 @@ func HelloHellConnection(w http.ResponseWriter, r *http.Request) {
 		// 3. Print and write message back to browser
 		fmt.Printf("Received: %s\n", string(p))
 		if err := conn.WriteMessage(messageType, []byte("Hello Hell")); err != nil {
-			fmt.Println(err)
+			fmt.Print(err)
 			return
 		}
 	}

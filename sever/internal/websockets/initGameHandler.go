@@ -24,6 +24,7 @@ func initGameWSHandler(conn *websocket.Conn, message GameMessage) {
 			watingGame.TeamB = append(watingGame.TeamB, player)
 			onGoingGames = append(onGoingGames, watingGame)
 			fmt.Println("New Game created: ", watingGame)
+			sendBulkMessage(getAllSockets(watingGame), "init_game_success", "")
 			watingGame = nil
 		} else if len(watingGame.TeamA) > len(watingGame.TeamB) {
 			watingGame.TeamB = append(watingGame.TeamB, player)

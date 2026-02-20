@@ -1,10 +1,13 @@
 package models
 
+import "github.com/gorilla/websocket"
+
 type Player struct {
-	Name  string `json:"name"`
-	X     int    `json:"x"`
-	Y     int    `json:"y"`
-	Goals int    `json:"goals"`
+	Socket *websocket.Conn `json:"socket"`
+	Name   string          `json:"name"`
+	X      int             `json:"x"`
+	Y      int             `json:"y"`
+	Goals  int             `json:"goals"`
 }
 
 type Football struct {

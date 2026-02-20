@@ -38,7 +38,8 @@ func GameWSHandler(w http.ResponseWriter, r *http.Request) {
 		if message.Type == InitGameType {
 			if watingGame == nil {
 				player := models.Player{
-					Name: message.Payload,
+					Socket: conn,
+					Name:   message.Payload,
 				}
 
 				watingGame = &models.Game{
@@ -46,7 +47,7 @@ func GameWSHandler(w http.ResponseWriter, r *http.Request) {
 					Target: 7,
 				}
 			} else {
-				player := models.Player{Name: message.Payload}
+				player := models.Player{Socket: conn, Name: message.Payload}
 				if len(watingGame.TeamA) == 11 && len(watingGame.TeamB) == 10 {
 					watingGame.TeamB = append(watingGame.TeamB, player)
 					onGoingGames = append(onGoingGames, watingGame)
@@ -59,6 +60,8 @@ func GameWSHandler(w http.ResponseWriter, r *http.Request) {
 					watingGame.TeamA = append(watingGame.TeamA, player)
 				}
 			}
+
+			fmt.Println(watingGame)
 		}
 	}
 }

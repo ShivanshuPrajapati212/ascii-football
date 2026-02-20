@@ -51,15 +51,14 @@ func GameWSHandler(w http.ResponseWriter, r *http.Request) {
 					watingGame.TeamB = append(watingGame.TeamB, player)
 					onGoingGames = append(onGoingGames, watingGame)
 					watingGame = nil
-				}
-				if len(watingGame.TeamA) > len(watingGame.TeamB) {
+				} else if len(watingGame.TeamA) > len(watingGame.TeamB) {
 					watingGame.TeamB = append(watingGame.TeamB, player)
 				} else if len(watingGame.TeamA) < len(watingGame.TeamB) {
 					watingGame.TeamA = append(watingGame.TeamA, player)
+				} else {
+					watingGame.TeamA = append(watingGame.TeamA, player)
 				}
 			}
-			fmt.Println(onGoingGames)
-			fmt.Println(watingGame)
 		}
 	}
 }

@@ -5,6 +5,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/ShivanshuPrajapati212/ascii-football/internal/windows"
 	"golang.org/x/term"
 )
 
@@ -22,6 +23,7 @@ func MainLoop() {
 		startTime := time.Now()
 
 		printField()
+		windows.CreateAndShowWindow(30, 120, "Join A Game", "Click the button below to join", "Join Game")
 
 		time.Sleep(time.Duration((1.0/float32(FPS))*float32(time.Second)) - time.Since(startTime))
 

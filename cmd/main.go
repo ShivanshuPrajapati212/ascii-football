@@ -1,7 +1,7 @@
 package main
 
-import "github.com/ShivanshuPrajapati212/ascii-football/internal"
+import "github.com/ShivanshuPrajapati212/ascii-football/internal/gameloop"
 
 func main() {
-	internal.MainLoop()
+	gameloop.MainLoop()
 }

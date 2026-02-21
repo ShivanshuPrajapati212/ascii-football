@@ -1,3 +1,3 @@
-package internal
+package gameloop
 
 var height, width int

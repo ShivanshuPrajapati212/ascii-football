@@ -1,6 +1,7 @@
 package ws
 
 import (
+	"encoding/json"
 	"log"
 	"sync"
 	"time"
@@ -29,7 +30,7 @@ func GetManager() *ConnectionManager {
 	once.Do(func() {
 		manager = &ConnectionManager{
 			done: make(chan struct{}),
-			url:  "ws://localhost:42069/helloHell",
+			url:  "ws://localhost:42069/ws",
 		}
 	})
 	return manager
@@ -163,4 +164,18 @@ func ConnectToWS() {
 // GetMessage returns the latest message (for use in game loop)
 func GetMessage() (int, []byte) {
 	return GetManager().GetLatestMessage()
+}
+
+func ParseLatestMessage() (string, string) {
+	_, msg := GetMessage()
+	if msg == nil {
+		return "", ""
+	}
+	var msgJSON Message
+
+	err := json.Unmarshal(msg, &msgJSON)
+	if err != nil {
+		log.Fatal("error pasrsing json: ", err)
+	}
+	return msgJSON.Type, msgJSON.Payload
 }
